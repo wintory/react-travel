@@ -1,12 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-const devServer = {
-  host: '0.0.0.0',
-  port: 8080
-};
 
 module.exports = {
   entry: [
@@ -22,7 +16,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['react-hot-loader/webpack', 'babel'], // react-hot need to be first loaders
+        loaders: ['babel'],
         exclude: /node_modules/,
       },
       {
