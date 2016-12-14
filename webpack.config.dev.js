@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 
 const devServer = {
   host: '0.0.0.0',
@@ -16,8 +17,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    publicPath: '/',
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   devtool: 'eval',
   module: {
@@ -39,22 +39,28 @@ module.exports = {
         test: /\.(png|woff|woff2|eot|ttf|svg|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loaders: ['url?limit=100000'],
       },
+      {
+        test: /\.json$/,
+        loaders: ['json']
+      }
     ]
   },
   postcss: function () {
-    return [autoprefixer];
+    return [autoprefixer]
   },
   plugins: [
+    new DashboardPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     hot: true,
+    contentBase: './dist',
     host: devServer.host,
     port: devServer.port,
     historyApiFallback: {
-      index: './dist/'
-    },
+      index: './'
+    }
   },
 };
