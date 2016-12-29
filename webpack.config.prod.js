@@ -2,6 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
 
+process.env.NODE_ENV = 'production'
+
 module.exports = {
   entry: [
     './client/index.js'
@@ -39,5 +41,10 @@ module.exports = {
   },
   postcss: function () {
     return [autoprefixer]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    })
+  ],
 };

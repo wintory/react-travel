@@ -8,6 +8,8 @@ const devServer = {
   port: 8080
 };
 
+process.env.NODE_ENV = 'development'
+
 module.exports = {
   entry: [
     'react-hot-loader/patch',
@@ -52,7 +54,10 @@ module.exports = {
     new DashboardPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    })
   ],
   devServer: {
     hot: true,
