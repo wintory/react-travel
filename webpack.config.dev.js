@@ -37,7 +37,7 @@ module.exports = {
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loaders: ['url?limit=100000'],
+        loaders: ['url?limit=50000'],
       },
       {
         test: /\.json$/,

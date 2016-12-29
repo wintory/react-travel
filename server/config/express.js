@@ -4,6 +4,10 @@ import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
 import path from 'path'
+import jade from 'jade'
+import indexRoute from '../app/routes/index.route'
+
+console.log(indexRoute)
 
 export default () => {
   const app = express()
@@ -18,9 +22,12 @@ export default () => {
     extended: true
   }))
   app.use(bodyParser.json())
+  app.set('views',path.join(__dirname,'../app/views/'))
+  app.set('view engine','jade')
+
+  indexRoute(app)
 
   app.use(express.static(path.join(__dirname,'../../dist')))
-  app.get('*',(req,res,next)=>res.sendFile(path.join(__dirname,'../../dist/index.html')))
 
   return app
 }
