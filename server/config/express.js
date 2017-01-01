@@ -7,8 +7,6 @@ import path from 'path'
 import jade from 'jade'
 import indexRoute from '../app/routes/index.route'
 
-console.log(indexRoute)
-
 export default () => {
   const app = express()
 
