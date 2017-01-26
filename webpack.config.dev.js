@@ -1,20 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
-const DashboardPlugin = require('webpack-dashboard/plugin')
-
-const devServer = {
-  host: '0.0.0.0',
-  port: 8080
-};
 
 process.env.NODE_ENV = 'development'
 
 module.exports = {
   entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://' + devServer.host + ':' + devServer.port,
-    'webpack/hot/only-dev-server',
     './client/index.js'
   ],
   output: {
@@ -26,7 +17,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['react-hot-loader/webpack', 'babel'],
+        loaders: ['react-hot', 'babel'],
         exclude: /node_modules/,
       },
       {
@@ -51,19 +42,13 @@ module.exports = {
     return [autoprefixer]
   },
   plugins: [
-    new DashboardPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ],
   devServer: {
-    hot: true,
-    contentBase: './dist',
-    host: devServer.host,
-    port: devServer.port,
     historyApiFallback: {
       index: './'
     }

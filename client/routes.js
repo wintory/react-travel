@@ -1,13 +1,12 @@
 import React from 'react'
 import { Router, Route, IndexRoute } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
 import { Header, Body } from './components'
 
-export default (store,history) => (
-  <Router history={syncHistoryWithStore(history,store)}>
+export default (history) => (
+  <Router history={history}>
     <Route path='/' component={Header}>
-      <IndexRoute component={Body} />
-      <Route path='test' component={Body} />
+      <IndexRoute component={Body}/>
+      <Route path='about' component={Body}/>
     </Route>
   </Router>
 )
