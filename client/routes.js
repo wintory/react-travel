@@ -6,7 +6,6 @@ export default (history) => (
   <Router history={history}>
     <Route path='/' component={Header}>
       <IndexRoute component={Body}/>
-      <Route path='about' component={Body}/>
     </Route>
   </Router>
 )
